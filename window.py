@@ -1,6 +1,8 @@
 from tkinter import Tk, BOTH, Canvas
 # tkinter 라이브러리를 이용해 윈도우 창을 띄우고 조작하기
 
+from objects import Point, Line
+
 class Window():
     def __init__(self, width, height, title="Maze Solver"):
         # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -47,5 +49,11 @@ class Window():
         # 그로 인해 wait_for_close함수 안의 while 루프가 종료된다
         print("Window closed.")
         self.__is_running = False
+
+    
+    def draw_line(self, line:Line, fill_color:str):
+        # Line 클래스 인스턴스를 받아 그 line을 self.__canvas에 그리는 함수
+        line.draw(self.__canvas, fill_color=fill_color)
+
         
     

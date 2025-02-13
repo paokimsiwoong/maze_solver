@@ -43,7 +43,7 @@ class Line():
 
 
 class Cell():
-    def __init__(self, window, p1=None, p2=None, left=True, right=True, top=True, bottom=True):
+    def __init__(self, window=None, p1=None, p2=None, left=True, right=True, top=True, bottom=True):
         self.has_left_wall = left
         self.has_right_wall = right
         self.has_top_wall = top
@@ -58,7 +58,7 @@ class Cell():
 
     def draw(self, p1:Point, p2:Point, fill_color="black"):
         # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        if self._win in None:
+        if self._win is None:
             return
         # 해답처럼 window 클래스에 문제가 있을 때의 예외 처리 하기
         # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

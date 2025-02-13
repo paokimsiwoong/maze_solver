@@ -2,8 +2,17 @@ from window import Window
 from objects import Point, Line, Cell
 from maze import Maze
 
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+import sys
+# @@@ 해답은 sys.setrecursionlimit 으로 재귀함수 깊이 제한 중
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 
 def main():
+    # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    sys.setrecursionlimit(10000)
+    # 재귀함수 깊이 제한
+    # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     width = 800
     height = 600
     win = Window(width, height)
@@ -17,9 +26,12 @@ def main():
     cell_size_y = (height - 2*margin) / num_rows
 
     maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
+    # 미로 생성 및 시각화
+    maze.solve()
+    # 길 탐색 및 시각화
 
     win.wait_for_close()
-    # 실행 상태 함수 호출
+    # 위에서 미로 생성 및 길 탐색이 끝난 후 종료버튼이 눌릴때까지 대기하면서 전체 캔버스 초기화하는 함수
 
 
 if __name__ == "__main__":

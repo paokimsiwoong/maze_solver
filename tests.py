@@ -40,6 +40,22 @@ class Tests(unittest.TestCase):
             self.assertEqual(False, maze._cells[case[2]-1][case[3]-1].has_bottom_wall)
             # 출구부분 wall이 제대로 False인지 확인
 
+    
+    def test_break_walls_r(self):
+        pass
+
+
+    def test_reset_cells_visited(self):
+        cases = [
+            (0, 0, 12, 10, 10, 10, 0),
+            (50, 50, 12, 16, 30, 30, 10),  
+        ] # 각 case는 (x,y, num_rows, num_cols, cell_size_x, cell_size_y, seed)
+
+        for case in cases:
+            maze = Maze(case[0], case[1], case[2], case[3], case[4], case[5], seed=case[6])
+            for i in range(case[2]):
+                for j in range(case[3]):
+                    self.assertEqual(False, maze._cells[i][j].visited)
 
 if __name__ == "__main__":
     unittest.main()

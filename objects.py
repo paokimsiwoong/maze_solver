@@ -54,6 +54,9 @@ class Cell():
         # @@@ 기본 None, draw 함수 input p1,p2를 저장하기
         self._win = window
         # _win == Window클래스 인스턴스
+
+        self.visited = False
+        # visited는 해당 cell 인스턴스의 벽들이 제거되었는지 아닌지 여부 체크
     
 
     def draw(self, p1:Point, p2:Point, fill_color="black"):
@@ -69,12 +72,27 @@ class Cell():
         if self.has_left_wall:
             self._win.draw_line(line= Line(p1, Point(p1.x, p2.y)), fill_color=fill_color)
             # Window클래스의 draw_line 함수 사용
+        # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        else:
+        # 이전에 벽이 있어서 fill_color로 그린 후 벽이 제거된 경우
+        # else에서 아무것도 하지 않으면 기존에 그린 벽이 남아 있어 제거된 것이 보이지 않는다
+        # ===> 배경색으로 아예 새로 그려서 지우는 효과를 만들기
+            # self._win.draw_line(line= Line(p1, Point(p1.x, p2.y)), fill_color="white")
+            self._win.draw_line(line= Line(p1, Point(p1.x, p2.y)), fill_color="#d9d9d9") # 배경색이 white가 아니라 #d9d9d9이므로 변경
+        # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         if self.has_right_wall:
             self._win.draw_line(line= Line(Point(p2.x, p1.y), p2), fill_color=fill_color)
+        else:
+            self._win.draw_line(line= Line(Point(p2.x, p1.y), p2), fill_color="#d9d9d9")
         if self.has_top_wall:
             self._win.draw_line(line= Line(p1, Point(p2.x, p1.y)), fill_color=fill_color)
+        else:
+            self._win.draw_line(line= Line(p1, Point(p2.x, p1.y)), fill_color="#d9d9d9")
         if self.has_bottom_wall:
             self._win.draw_line(line= Line(Point(p1.x, p2.y), p2), fill_color=fill_color)
+        else:
+            self._win.draw_line(line= Line(Point(p1.x, p2.y), p2), fill_color="#d9d9d9")
+
 
 
     def draw_move(self, to_cell, undo=False):

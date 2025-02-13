@@ -44,10 +44,19 @@ class Window():
         while self.__is_running:
             self.redraw()
 
+        # @@@@@@@@@@@@@@@@@@@@@@@@@
+        print("Window closed.")
+        # @@@@@@@@@@@@@@@@@@@@@@@@@
+
     def close(self):
         # 이 함수가 불리면 self.is_running가 False로 되고
         # 그로 인해 wait_for_close함수 안의 while 루프가 종료된다
-        print("Window closed.")
+        # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        # print("Window closed.")
+        # 여기에 print를 두면
+        # time.sleep이나 그림을 그리거나 해서 종료키를 눌러도 바로 안꺼지는 경우에도
+        # Window closed가 출력되므로 wait_for_close의 while 루프 종료 후로 위치 변경
+        # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         self.__is_running = False
 
     
